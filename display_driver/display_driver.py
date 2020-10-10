@@ -21,9 +21,10 @@ FORCE_MAX = 35 # pounds of force that maxes out color-keying
 
 def display_loop():
   # Set up resources to display graphics on RGB matrix
+  # Must create font first: https://github.com/hzeller/rpi-rgb-led-matrix/issues/1170
+  font = hardware.make_font('./fonts/7x13.bdf')
   matrix = hardware.make_matrix()
   canvas = matrix.CreateFrameCanvas()
-  font = hardware.make_font('./fonts/7x13.bdf')
   img = np.zeros([hardware.MATRIX_HEIGHT, hardware.MATRIX_WIDTH, 3],
                  dtype=np.uint8)
 

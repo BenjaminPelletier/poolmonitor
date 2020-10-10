@@ -1,0 +1,38 @@
+digraph G {
+  node [shape=box];
+
+  Converter [label="12V->5V 4A\nconverter"];
+  ESP [label="ESP8266",fontcolor="darkmagenta"];
+  Matrix [label="RGB LED\nmatrix"];
+
+  ESP -> Router [color="green",label="WiFi,\nreserved IP",dir="both",fontcolor="green"];
+  Pi -> Router [color="green",dir="both",label="Ethernet\ncable",fontcolor="green"];
+
+  subgraph cluster_0 {
+    label="Underwater";
+    Bonnet [label="RGB matrix\nPi bonnet"];
+    Pi [label="Raspberry Pi",fontcolor="darkcyan"];
+    Converter -> Bonnet [color="orange"];
+    Bonnet -> Pi [color="orange",label="5V",fontcolor="orange"];
+    Pi -> Bonnet [color="blue",label="Display\ndata",fontcolor="blue"];
+    Bonnet -> Matrix [color="blue"];
+  }
+
+  subgraph cluster_1 {
+    label="Near pool";
+    Switch -> ESP -> LED;
+    USBPower -> ESP [color="orange"];
+    Switch [label="Display\nenable\nswitch"];
+    LED [label="Activity\nindicator\nLED"];
+    USBPower [label="Micro USB\n5V power"];
+  }
+
+  subgraph cluster_2 {
+    label="Sheltered";
+    RouterSupply [label="Router\npower\nsupply"];
+    PowerSupply [label="12V supply"];
+    RouterSupply -> Router [color="red"];
+  }
+
+  PowerSupply -> Converter [color="red",label="CAT5 cable"];
+}
