@@ -1,4 +1,4 @@
 #!/bin/bash
 
-kill -s SIGINT `pgrep python3`
+kill -s SIGKILL `pgrep python3`
 

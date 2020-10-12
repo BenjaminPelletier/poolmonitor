@@ -25,6 +25,7 @@ def make_matrix() -> RGBMatrix:
   options.led_rgb_sequence = 'RGB'
   options.pixel_mapper_config = ''
   options.gpio_slowdown = 1
+  options.drop_privileges = False
 
   return RGBMatrix(options=options)
 

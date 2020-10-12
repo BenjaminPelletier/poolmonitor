@@ -14,7 +14,7 @@ import numpy as np
 from PIL import Image
 
 # Libraries in this project
-from displaylib import loadcell_polling, hardware, accessories
+from displaylib import loadcell_polling, hardware, accessories, logging
 
 FORCE_MAX = 35 # pounds of force that maxes out color-keying
 
@@ -127,6 +127,8 @@ def display_loop():
     canvas = matrix.SwapOnVSync(canvas)
 
     # Wait to begin the next frame
+    # Note that this does not achieve 20 fps, but rather limits maximum refresh
+    # to 20 fps.
     time.sleep(0.05)
 
 

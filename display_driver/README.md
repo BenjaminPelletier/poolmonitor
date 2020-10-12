@@ -44,8 +44,7 @@ while connected to the router that the Pi is also connected to, select poolpi
 To stop the display driver from running in the background after following the
 steps in the previous section, follow the instructions again, but instead of
 using the command `sudo ./start_driver.py &`, use the command
-`sudo ./stop_driver.py` (note the lack of ampersand).  If that fails, escalate
-to `sudo ./kill_driver.py`.
+`sudo ./stop_driver.py` (note the lack of ampersand).
 
 ## Shutdown
 The Raspberry Pi is a real computer and should be shut down gracefully to avoid

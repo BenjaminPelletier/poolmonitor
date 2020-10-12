@@ -10,7 +10,7 @@ import jsonschema
 import requests
 
 # Libraries in this project
-from . import accessories
+from . import accessories, logging
 
 
 # URL at which load cell information can be retrieved
@@ -92,6 +92,7 @@ class Coordinator(object):
     self._loadcell_timestamp = datetime.datetime.utcnow()
     self._loadcell: Optional[LoadCellPoll] = None
     self._loadcell_errors: int = 0
+    self._logger = logging.Logger()
 
   def get_phase(self, index: int) -> PollPhase:
     with self._lock:
@@ -114,6 +115,7 @@ class Coordinator(object):
           self._loadcell_timestamp = initiated_at
           self._loadcell = value
           self._loadcell_errors = 0
+          self._logger.update(self._loadcell, initiated_at)
         else:
           self._loadcell_errors += 1
           if self._loadcell_errors >= 5:
